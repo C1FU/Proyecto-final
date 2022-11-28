@@ -1,0 +1,127 @@
+//Algoritmo BOOTH\\
+LOAD
+load _Q-1:    MOV     ACC, CTE
+Q-1
+MOV    DPTR, ACC
+MOV    ACC, [DPTR]
+MOV    AVI, ACC
+load_Q:    MOV    ACC, CTE
+Q
+MOV    DPTR, ACC
+MOV    ACC, [DPTR]
+MOV    A, ACC
+MOV    ACC, CTE
+0x01
+AND    ACC, A           
+MOV     A, ACC
+MOV    ACC, AVI
+XOR    ACC, A             
+JZ    CTE
+EQUAL        
+MOV    ACC, CTE
+0x01
+AND    ACC, A           
+JZ    CTE
+ADDITION                 
+JMP    CTE
+SUBTRACTION              
+
+EQUAL
+load_b:    MOV    ACC, CTE        
+B
+MOV    DPTR, ACC
+JMP    CTE
+SHIFT
+
+SUBTRACTION                
+load_m:    MOV     ACC, CTE
+M
+MOV    DPTR, ACC
+MOV    ACC, [DPTR]
+neg_m: INV    ACC
+MOV    A, ACC
+MOV    ACC, CTE
+0x01
+ADD    ACC, A
+MOV    A, ACC
+load_b:    MOV    ACC, CTE
+B
+MOV    DPTR, ACC
+MOV    ACC, [DPTR]
+ADD    ACC, A
+store_b:    MOV     [DPTR], ACC        
+JMP    CTE
+SHIFT
+
+ADDITION                     
+load_m:    MOV    ACC, CTE
+M
+MOV    DPTR, ACC
+MOV    ACC, [DPTR]
+MOV    A, ACC
+load_b:    MOV    ACC, CTE
+B
+MOV    DPTR, ACC
+MOV    ACC, [DPTR]
+ADD    ACC, A
+store_b    MOV    [DPTR], ACC       
+SHIFT
+          
+SHIFT
+load_b:    MOV    ACC, [DPTR]
+MOV    A, ACC
+load_cte:    MOV    ACC, CTE
+1x00
+AND    ACC, A         
+MOV    cte1, ACC         
+MOV    ACC, CTE
+0x01
+AND    ACC, A        
+MOV    TEMP, ACC       
+MOV    ACC, A
+SHR    ACC             
+store_b:    MOV    [DPTR], ACC       
+MOV    ACC, TEMP        
+MOV    cte1, ACC        
+load_q:    MOV    ACC, CTE
+Q
+MOV    DPTR, ACC
+MOV    ACC, [DPTR]
+MOV    A, ACC
+MOV    ACC, CTE
+0x01
+AND    ACC, A          
+MOV    AVI, ACC         
+AVI
+MOV    ACC, A
+SHR    ACC          
+MOV    [DPTR], ACC        
+MOV    ACC, CTE        
+Q-1
+MOV    DPTR, ACC         
+MOV    ACC, AVI
+MOV    [DPTR], ACC         
+JMP    CTE
+CALCULATE_COUNT
+
+CALCULATE_COUNT:    
+load_count:    MOV    ACC, CTE
+COUNT
+MOV    DPTR, ACC
+MOV    ACC, [DPTR]
+MOV    A, ACC
+MOV    ACC, CTE
+0x01
+INV    ACC
+ADD    ACC, A
+MOV    [DPTR], ACC
+JZ    CTE
+END
+JMP    CTE
+LOAD
+
+END_PROGRAM:
+Footer
+© 2022 GitHub, Inc.
+Footer navigation
+Terms
